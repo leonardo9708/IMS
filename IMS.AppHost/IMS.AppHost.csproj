@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IMS.ApiService\IMS.ApiService.csproj" />
+    <ProjectReference Include="..\IMS.ServiceDefaults\IMS.ServiceDefaults.csproj" />
     <ProjectReference Include="..\IMS.Web\IMS.Web.csproj" />
   </ItemGroup>
 

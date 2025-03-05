@@ -16,6 +16,6 @@ namespace DataBase.Data
         }
 
         public DbSet<IncidentModel> Incident { get; set; }
-        public DbSet<UsersModel> User { get; set; }
+        public DbSet<UsersModel> SupportUsers { get; set; }
     }
 }

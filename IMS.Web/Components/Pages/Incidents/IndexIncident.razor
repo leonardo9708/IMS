@@ -1,0 +1,40 @@
+﻿@page "/incidents"
+<h3>IndexIncident</h3>
+
+@if (IncidentModels == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <a class="btn btn-primary">Create</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Comments</th>
+                <th>Support User</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var Incident in IncidentModels)
+            {
+                <tr>
+                    <td>@Incident.Id</td>
+                    <td>@Incident.Category</td>
+                    <td>@Incident.Description</td>
+                    <td>@Incident.Comments</td>
+                    <td>@Incident.IdSupportUser</td>
+                    <td>@Incident.IdStatus</td>
+                    <td>
+                        <a class="btn btn-secondary">Update</a>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
