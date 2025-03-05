@@ -1,3 +1,4 @@
+using Blazored.Toast;
 using IMS.Web;
 using IMS.Web.Components;
 
@@ -11,6 +12,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddOutputCache();
+
+builder.Services.AddBlazoredToast();
 
 builder.Services.AddHttpClient<ApiClient>(client =>
     {

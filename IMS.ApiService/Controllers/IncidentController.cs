@@ -17,5 +17,12 @@ namespace IMS.ApiService.Controllers
             var incidents = await incidenService.GetIncidents();
             return Ok(new BaseResponseModel { Success = true, Data = incidents });
         }
+
+        [HttpPost("CreateIncident")]
+        public async Task<ActionResult<IncidentModel>> CreateProduct(IncidentModel incidentModel)
+        {
+            await incidenService.CreateProduct(incidentModel);
+            return Ok(new BaseResponseModel { Success = true });
+        }
     }
 }
