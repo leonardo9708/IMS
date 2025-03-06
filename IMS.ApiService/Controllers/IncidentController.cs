@@ -24,5 +24,27 @@ namespace IMS.ApiService.Controllers
             await incidenService.CreateProduct(incidentModel);
             return Ok(new BaseResponseModel { Success = true });
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<BaseResponseModel>> GetIncident(int id)
+        {
+            var incidentModel = await incidenService.GetIncidents(id);
+            if (incidentModel == null)
+            {
+                return Ok(new BaseResponseModel { Success = false, ErrorMessage = "Incident not foud" });
+            }
+            return Ok(new BaseResponseModel { Success = true, Data = incidentModel });
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateIncident(int id, IncidentModel incidentModel)
+        {
+            if(id != incidentModel.Id || !await incidenService.IncidentModelExist(id))
+            {
+                return Ok(new BaseResponseModel { Success = false, ErrorMessage = "Bad request" });
+            }
+            await incidenService.UpdateIncident(incidentModel);
+            return Ok(new BaseResponseModel { Success = true });
+        }
     }
 }

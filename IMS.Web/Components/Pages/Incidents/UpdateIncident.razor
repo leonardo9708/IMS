@@ -1,0 +1,40 @@
+﻿@page "/incident/update/{ID:int}"
+<h3>UpdateIncident</h3>
+@rendermode InteractiveServer
+
+<EditForm OnValidSubmit="Submit" Model="IncidentModelU" FormName="update">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Category</label>
+                <InputText class="form-control" @bind-Value="IncidentModelU.Category" />
+                <ValidationMessage For="() => IncidentModelU.Category" />
+            </div>
+            <div class="col-md-6">
+                <label>Description</label>
+                <InputText class="form-control" @bind-Value="IncidentModelU.Description" />
+                <ValidationMessage For="() => IncidentModelU.Description" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Comments</label>
+                <InputText class="form-control" @bind-Value="IncidentModelU.Comments" />
+                <ValidationMessage For="() => IncidentModelU.Comments" />
+            </div>
+            <div class="col-md-6">
+                <label>Support User</label>
+                <InputText class="form-control" @bind-Value="IncidentModelU.SupportUser" />
+                <ValidationMessage For="() => IncidentModelU.SupportUser" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Status</label>
+                <InputText class="form-control" @bind-Value="IncidentModelU.Status" />
+                <ValidationMessage For="() => IncidentModelU.Status" />
+            </div>
+        </div>
+        <button class="btn btn-secondary" type="submit">update</button>
+    </div>
+</EditForm>

@@ -13,6 +13,9 @@ namespace BusinessLogic.Repositories
     {
         Task<List<IncidentModel>> GetIncidents();
         Task<IncidentModel> CreateProduct(IncidentModel incidentModel);
+        Task<IncidentModel> GetIncidents(int id);
+        Task<bool> IncidentModelExist(int id);
+        Task UpdateIncident(IncidentModel incidentModel);
     }
 
     public class IncidentRepository(AppDbContext appDbContext) : IIncidentRepository
@@ -27,6 +30,22 @@ namespace BusinessLogic.Repositories
         public Task<List<IncidentModel>> GetIncidents()
         {
             return appDbContext.Incident.ToListAsync();
+        }
+
+        public Task<IncidentModel> GetIncidents(int id)
+        {
+            return appDbContext.Incident.FirstOrDefaultAsync(n => n.Id == id);
+        }
+
+        public Task<bool> IncidentModelExist(int id)
+        {
+            return appDbContext.Incident.AnyAsync(n => n.Id == id);
+        }
+
+        public async Task UpdateIncident(IncidentModel incidentModel)
+        {
+            appDbContext.Entry(incidentModel).State = EntityState.Modified;
+            await appDbContext.SaveChangesAsync();
         }
     }
 }
