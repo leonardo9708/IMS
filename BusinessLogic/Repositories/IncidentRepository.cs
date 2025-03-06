@@ -16,6 +16,7 @@ namespace BusinessLogic.Repositories
         Task<IncidentModel> GetIncidents(int id);
         Task<bool> IncidentModelExist(int id);
         Task UpdateIncident(IncidentModel incidentModel);
+        Task DeleteIncident(int id);
     }
 
     public class IncidentRepository(AppDbContext appDbContext) : IIncidentRepository
@@ -25,6 +26,13 @@ namespace BusinessLogic.Repositories
             appDbContext.Incident.Add(incidentModel);
             await appDbContext.SaveChangesAsync();
             return incidentModel;
+        }
+
+        public async Task DeleteIncident(int id)
+        {
+            var incident = appDbContext.Incident.FirstOrDefault(n => n.Id == id);
+            appDbContext.Incident.Remove(incident);
+            await appDbContext.SaveChangesAsync();
         }
 
         public Task<List<IncidentModel>> GetIncidents()

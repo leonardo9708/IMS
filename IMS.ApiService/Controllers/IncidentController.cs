@@ -46,5 +46,16 @@ namespace IMS.ApiService.Controllers
             await incidenService.UpdateIncident(incidentModel);
             return Ok(new BaseResponseModel { Success = true });
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteIncidents(int id)
+        {
+            if (!await incidenService.IncidentModelExist(id))
+            {
+                return Ok(new BaseResponseModel { Success = false, ErrorMessage = "Not Found incident"});
+            }
+            await incidenService.DeleteIncident(id);
+            return Ok(new BaseResponseModel { Success = true });
+        }
     }
 }

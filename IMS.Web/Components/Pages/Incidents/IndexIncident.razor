@@ -31,10 +31,21 @@ else
                     <td>@Incident.Status</td>
                     <td>
                         <a class="btn btn-secondary" href="/incident/update/@Incident.Id">Update</a>
-                        <button class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-danger" @onclick="()=> { DeleteId = Incident.Id; Modal.Open();}">Delete</button>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+
+    <AppModal @ref="Modal">
+        <Title>Notification</Title>
+        <Body>
+            Do you sure want to delete this product?
+        </Body>
+        <Footer>
+            <button type="button" class="btn btn-primary" style="width:80px" @onclick="Delete">Yes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="() => Modal.Close()">Cancel</button>
+        </Footer>
+    </AppModal>
 }

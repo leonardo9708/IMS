@@ -15,6 +15,7 @@ namespace BusinessLogic.Services
         Task<IncidentModel> GetIncidents(int id);
         Task<bool> IncidentModelExist(int id);
         Task UpdateIncident(IncidentModel incidentModel);
+        Task DeleteIncident(int id);
     }
 
     public class IncidentService(IIncidentRepository incidentRepository) : IIncidentService
@@ -22,6 +23,11 @@ namespace BusinessLogic.Services
         public Task<IncidentModel> CreateProduct(IncidentModel incidentModel)
         {
             return incidentRepository.CreateProduct(incidentModel);
+        }
+
+        public Task DeleteIncident(int id)
+        {
+            return incidentRepository.DeleteIncident(id);
         }
 
         public Task<List<IncidentModel>> GetIncidents()
